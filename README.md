@@ -45,5 +45,8 @@ Clean clientside build.js file
 * SVG icons for weather info
 * Remember last viewed place
 
+## Live Demo
+You can view the live demo [here](https://quick-weather-app.herokuapp.com/) 
+
 ## License
 [MIT](LICENSE.md) © [Dave Bitter](https://github.com/DaveBitter/)
