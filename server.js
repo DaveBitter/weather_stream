@@ -6,12 +6,15 @@ const io = require('socket.io')(http)
 const port = process.env.PORT || 1337
 const path = require('path')
 const request = require('request')
+const cities = require('./resources/cities.json')
 
 
 const indexRouter = require('./routes/index.js')
 
 io.on('connection', function(socket) {
-  let city = 'amsterdam'
+  let city = randomOfArray(cities)
+
+  socket.emit("connection", city)
 
   const doQuery = () => {
     request('http://api.openweathermap.org/data/2.5/find?q=' + city + '&units=metric&appid=' + process.env.APIKEY, function(error, response, body) {
@@ -65,6 +68,10 @@ const degreeToColor = (deg) => {
   }
 
   return color
+}
+
+const randomOfArray = (arr) => {
+  return arr[Math.floor(Math.random() * (arr.length + 1))]
 }
 
 app
