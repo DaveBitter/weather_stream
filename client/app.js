@@ -15,6 +15,10 @@ elements.input.addEventListener("keyup", function(e) {
 	}
 })
 
+socket.on('connection', function(city) {
+	elements.input.value = city
+})
+
 socket.on('updated data', function(data) {
 	elements.body.style.background = data.weather.color
 	elements.temp.innerHTML = data.main.temp + '°'
