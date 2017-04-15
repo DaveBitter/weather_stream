@@ -54,16 +54,16 @@ const dataFormatter = (data) => {
 const degreeToColor = (deg) => {
   let color = ""
 
-  if (deg < 0) {
+  if (deg < 5) {
     color = '#9fceff';
   }
-  if (deg < 10 && deg > 0) {
+  if (deg < 15 && deg >= 5) {
     color = '#ffd038'
   }
-  if (deg < 20 && deg >= 10) {
+  if (deg < 25 && deg >= 15) {
     color = '#ffc300'
   }
-  if (deg > 20) {
+  if (deg > 25) {
     color = '#ff381e'
   }
 
