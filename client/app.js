@@ -20,3 +20,9 @@ socket.on('updated data', function(data) {
 	elements.temp.innerHTML = data.main.temp + '°'
 	elements.text.innerHTML = data.weather.description
 })
+
+socket.on('not found', function(query) {
+	console.log("404")
+	elements.temp.innerHTML = ''
+	elements.text.innerHTML = query + '?'
+})

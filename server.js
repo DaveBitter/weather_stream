@@ -15,7 +15,11 @@ io.on('connection', function(socket) {
 
   const doQuery = () => {
     request('http://api.openweathermap.org/data/2.5/find?q=' + city + '&units=metric&appid=' + process.env.APIKEY, function(error, response, body) {
-      socket.emit('updated data', dataFormatter(JSON.parse(body)));
+      if (JSON.parse(body).list.length > 0) {
+        socket.emit('updated data', dataFormatter(JSON.parse(body)))
+      } else {
+        socket.emit('not found', city)
+      }
     });
   }
 
