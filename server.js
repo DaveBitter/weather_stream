@@ -10,16 +10,58 @@ const request = require('request')
 
 const indexRouter = require('./routes/index.js')
 
-console.log(process.env.APIKEY)
-
 io.on('connection', function(socket) {
-  setInterval(function() {
-    request('http://samples.openweathermap.org/data/2.5/weather?q=London,uk&units=metric&appid=' + process.env.APIKEY, function(error, response, body) {
-      console.log(body)
-      socket.emit('updated data', JSON.parse(body));
+  let city = 'amsterdam'
+
+  const doQuery = () => {
+    request('http://api.openweathermap.org/data/2.5/find?q=' + city + '&units=metric&appid=' + process.env.APIKEY, function(error, response, body) {
+      socket.emit('updated data', dataFormatter(JSON.parse(body)));
     });
-  }, 10000);
+  }
+
+  // page load query
+  doQuery()
+
+  // refresh data query
+  setInterval(function() {
+    doQuery()
+  }, 5000);
+
+  // query from user
+  socket.on('query', function(query) {
+    city = query
+    doQuery()
+  })
+
 });
+
+const dataFormatter = (data) => {
+  data = data.list[0]
+  data.main.temp = data.main.temp.toFixed()
+  data.weather = data.weather[0]
+  data.weather.color = degreeToColor(data.main.temp)
+
+  return data
+}
+
+const degreeToColor = (deg) => {
+  let color = ""
+
+  if (deg < 0) {
+    color = '#9fceff';
+  }
+  if (deg < 10 && deg > 0) {
+    color = '#ffd038'
+  }
+  if (deg < 20 && deg >= 10) {
+    color = '#ffc300'
+  }
+  if (deg > 20) {
+    color = '#ff381e'
+  }
+
+  return color
+}
 
 app
   .set('view engine', 'pug')

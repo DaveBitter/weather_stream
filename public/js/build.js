@@ -2,15 +2,23 @@
 var socket = io();
 
 var elements = {
-	city: document.getElementById('city'),
-	temp: document.getElementById('temp'),
-	text: document.getElementById('text')
+	body:  document.body,
+	temp:  document.getElementById('temp'),
+	text:  document.getElementById('text'),
+	input: document.getElementById('query')
 }
 
+elements.input.addEventListener("keyup", function(e) {
+	e.preventDefault()
+	if (e.keyCode == 13) {
+		socket.emit('query', e.target.value)
+		e.target.blur()
+	}
+})
+
 socket.on('updated data', function(data) {
-	console.log(data)
-	elements.city.innerHTML = data.name
-	elements.temp.innerHTML = data.main.temp
-	elements.text.innerHTML = data.weather[0].description
+	elements.body.style.background = data.weather.color
+	elements.temp.innerHTML = data.main.temp + '°'
+	elements.text.innerHTML = data.weather.description
 })
 },{}]},{},[1]);

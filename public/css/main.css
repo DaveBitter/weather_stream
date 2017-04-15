@@ -1,0 +1,49 @@
+body {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	color: #fff;
+	background-color: #ffd038;
+	transition: .5s ease-in-out;
+	font-family: 'Roboto', sans-serif;
+}
+
+#temp {
+	font-size: 10em;
+	margin-bottom: 0;
+	transition: .5s ease-in-out;
+}
+
+#text {
+	margin-top: 0;
+	font-size: 5em;
+}
+
+@media(min-width: 700px) {
+	#temp {
+		font-size: 20em;
+	}
+
+	#text {
+		font-size: 10em;
+	}
+}
+
+#query {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	font-size: 50px;
+	text-align: center;
+	padding: 50px 25px;
+	background-color: rgba(0, 0, 0, 0.2);
+	color: #fff;
+}
+
+#query,
+#query:focus,
+#query:hover {
+	border: none;
+	outline: none;
+}
