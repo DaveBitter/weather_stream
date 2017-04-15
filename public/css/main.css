@@ -47,3 +47,10 @@ body {
 	border: none;
 	outline: none;
 }
+
+#github-mark {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	width: 2.5em;
+}
