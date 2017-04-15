@@ -1,0 +1,19 @@
+{
+  "name": "Weather",
+  "short_name": "Weather",
+  "description": null,
+  "dir": "auto",
+  "lang": "en-US",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "background_color": "#ff381e",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

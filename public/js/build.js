@@ -2,9 +2,9 @@
 var socket = io();
 
 var elements = {
-	body:  document.body,
-	temp:  document.getElementById('temp'),
-	text:  document.getElementById('text'),
+	body: document.body,
+	temp: document.getElementById('temp'),
+	text: document.getElementById('text'),
 	input: document.getElementById('query')
 }
 
@@ -31,4 +31,8 @@ socket.on('not found', function(query) {
 	elements.temp.innerHTML = ''
 	elements.text.innerHTML = query + '?'
 })
+
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/sw.js')
+}
 },{}]},{},[1]);
