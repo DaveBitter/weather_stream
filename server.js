@@ -32,7 +32,7 @@ io.on('connection', function(socket) {
   // refresh data query
   setInterval(function() {
     doQuery()
-  }, 5000);
+  }, 600000);
 
   // query from user
   socket.on('query', function(query) {
